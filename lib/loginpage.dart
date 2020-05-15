@@ -66,9 +66,15 @@ class _LoginPageState extends State<LoginPage>  {
                 textColor: Colors.white,
                 elevation: 7.0,
                 onPressed: () {
-                
+                if(_email.isEmpty && _password.isEmpty){
+                  setState(() {
+                    errormsg="Enter Email And Password";
+                  });
+                  
+                }
+                else{
                 signIn(_email,_password);
-             
+                }
                 },
               ),
               SizedBox(height: 15.0),

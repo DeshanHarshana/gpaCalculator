@@ -75,8 +75,15 @@ class _SignupPageState extends State<SignupPage> {
                 textColor: Colors.white,
                 elevation: 7.0,
                 onPressed: () {
-                  double strength=estimatePasswordStrength(_password);
-                  if (EmailValidator.validate(_email) && (!_nickName.isEmpty)) {
+                  
+                  if(_email.isEmpty && _password.isEmpty && _nickName.isEmpty){
+                    setState(() {
+                      errormsg="Fill details";
+                    });
+                  }
+                  else{
+                    double strength=estimatePasswordStrength(_password);
+                  if (EmailValidator.validate(_email)) {
                     if (strength < 0.3) {
                       setState(() {
                         errormsg='This password is weak!';
@@ -91,7 +98,9 @@ class _SignupPageState extends State<SignupPage> {
                       errormsg="Enter Valid Email";
                     });
                   }
-                  
+                  }
+                
+                 
                 },
               ),
               Container(child: Text(errormsg,style: TextStyle(color: Colors.red),))
