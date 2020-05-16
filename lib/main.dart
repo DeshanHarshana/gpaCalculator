@@ -1,3 +1,6 @@
+import 'package:loginregistroy/GPA1.dart';
+import 'package:loginregistroy/GPA2.dart';
+
 import 'adddpage.dart';
 import 'homepage2.dart';
 import 'uploadpage.dart';
@@ -33,6 +36,8 @@ class _MyAppState extends State<MyApp> {
         '/login': (BuildContext context) => new LoginPage(),
         '/upload':(BuildContext context) => new UploadData(),
         '/test':(BuildContext context) => new Addpage(),
+        '/GPA1':(BuildContext context) => new GPA1(),
+        '/GPA2':(BuildContext context) => new GPA2(),
       },
     );
   }
