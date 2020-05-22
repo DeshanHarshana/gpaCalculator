@@ -8,12 +8,12 @@ import 'package:loginregistroy/services/usermanagement.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class GPA2 extends StatefulWidget {
+class GPA3 extends StatefulWidget {
   @override
-  _GPA2State createState() => _GPA2State();
+  _GPA3State createState() => _GPA3State();
 }
 
-class _GPA2State extends State<GPA2> {
+class _GPA3State extends State<GPA3> {
   var color1 = Colors.black;
   var color2 = Colors.black;
   var color3 = Colors.black;
@@ -21,8 +21,8 @@ class _GPA2State extends State<GPA2> {
   var color5 = Colors.black;
   var color6 = Colors.black;
   UserManagement management = new UserManagement();
-  String semester = 'sem2';
-  String semname='SEMESTER 2';
+  String semester = 'sem3';
+  String semname='SEMESTER 3';
   String gpa = '';
   String totCredit = '';
   String email = '';
@@ -253,7 +253,7 @@ class _GPA2State extends State<GPA2> {
     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     return WillPopScope(
       onWillPop:() async => false,
-          child: SafeArea(
+           child: SafeArea(
             child: Scaffold(
               backgroundColor: Colors.transparent,
         resizeToAvoidBottomPadding: true,
@@ -262,7 +262,6 @@ class _GPA2State extends State<GPA2> {
             image: DecorationImage(
                 image: AssetImage("assets/images/logo6.jpg"), fit: BoxFit.cover)),
           child: SingleChildScrollView(
-                  child: Container(
               child: Column(
                 children: <Widget>[
                   Row(
@@ -814,7 +813,7 @@ class _GPA2State extends State<GPA2> {
           ),
         ),
       )),
-          ),
+          
     );
   }
 

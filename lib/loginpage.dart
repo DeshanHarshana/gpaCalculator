@@ -13,12 +13,13 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage>  {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  String _email;
-  String _password;
+  String _email="";
+  String _password="";
   String errormsg="";
   ProgressDialog pr;
   @override
   Widget build(BuildContext context) {
+    
     pr = new ProgressDialog(context);
     pr.style(
   message: 'Loading....',
@@ -35,65 +36,70 @@ class _LoginPageState extends State<LoginPage>  {
      color: Colors.black, fontSize: 19.0, fontWeight: FontWeight.w600)
   );
     return new Scaffold(
-      resizeToAvoidBottomInset: false,
-        body: Center(
+      appBar: AppBar(backgroundColor: Colors.white,),
+      
+      resizeToAvoidBottomPadding: true,
+        body:SingleChildScrollView(
+
+                  child: Center(
       child: Container(
-          padding: EdgeInsets.all(25.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              TextField(
-                  decoration: InputDecoration(hintText: 'Email'),
+            padding: EdgeInsets.all(25.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TextField(
+                    decoration: InputDecoration(hintText: 'Email'),
+                    onChanged: (value) {
+                      setState(() {
+                        _email = value;
+                      });
+                    }),
+                SizedBox(height: 15.0),
+                TextField(
+                  decoration: InputDecoration(hintText: 'Password'),
                   onChanged: (value) {
                     setState(() {
-                      _email = value;
+                      _password = value;
                     });
-                  }),
-              SizedBox(height: 15.0),
-              TextField(
-                decoration: InputDecoration(hintText: 'Password'),
-                onChanged: (value) {
-                  setState(() {
-                    _password = value;
-                  });
-                },
-                obscureText: true,
-              ),
-              SizedBox(height: 20.0),
-              RaisedButton(
-                child: Text('Login'),
-                color: Colors.blue,
-                textColor: Colors.white,
-                elevation: 7.0,
-                onPressed: () {
-                if(_email.isEmpty && _password.isEmpty){
-                  setState(() {
-                    errormsg="Enter Email And Password";
-                  });
-                  
-                }
-                else{
-                signIn(_email,_password);
-                }
-                },
-              ),
-              SizedBox(height: 15.0),
-              Text('Don\'t have an account?'),
-              SizedBox(height: 10.0),
-              RaisedButton(
-                child: Text('Sign Up'),
-                color: Colors.blue,
-                textColor: Colors.white,
-                elevation: 7.0,
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/signup');
-                },
-              ),
-              SizedBox(height: 15.0),
-              Container(child: Text(errormsg,style: TextStyle(color: Colors.red),))
-            ],
-          )),
-    ));
+                  },
+                  obscureText: true,
+                ),
+                SizedBox(height: 20.0),
+                RaisedButton(
+                  child: Text('Login'),
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  elevation: 7.0,
+                  onPressed: () {
+                  if(_email.isEmpty && _password.isEmpty){
+                    setState(() {
+                      errormsg="Enter Email And Password";
+                    });
+                    
+                  }
+                  else{
+                  signIn(_email,_password);
+                  }
+                  },
+                ),
+                SizedBox(height: 15.0),
+                Text('Don\'t have an account?'),
+                SizedBox(height: 10.0),
+                RaisedButton(
+                  child: Text('Sign Up'),
+                  color: Colors.blue,
+                  textColor: Colors.white,
+                  elevation: 7.0,
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/signup');
+                  },
+                ),
+                SizedBox(height: 15.0),
+                Container(child: Text(errormsg,style: TextStyle(color: Colors.red),))
+              ],
+            )),
+    ),
+        ));
   }
   Future<String> signIn(String email, String password) async {
   FirebaseUser user;
@@ -107,7 +113,7 @@ class _LoginPageState extends State<LoginPage>  {
         email: email, password: password);
         pr.hide();
         pr.show();
-         Navigator.of(context).pushNamed('/homepage');
+         Navigator.of(context).pushNamed('/back');
     
   } catch (error) {
      pr.hide();
